@@ -1,5 +1,18 @@
-from math import sin, cos, pi
+from math import sin, cos, sqrt, tan, pi
 import pygame
+
+
+def DDA_algorithm(ray_start, ray_angle):
+    """_summary_
+
+    :param ray_start: _description_
+    :type ray_start: _type_
+    :param ray_angle: _description_
+    :type ray_angle: _type_
+    """
+    atan = 1/tan(ray_angle)
+    
+
 
 screen_width = 1024
 screen_height = 512
@@ -8,8 +21,8 @@ player_x = 300
 player_y = 300
 player_size = 8
 player_angle = 0
-player_dx = 0
-player_dy = 0
+player_dx = cos(player_angle) * 2
+player_dy = sin(player_angle) * 2
 
 world_width = 8
 world_height = 8
@@ -67,8 +80,16 @@ while running:
             player_angle += 2 * pi
         player_dx = cos(player_angle) * 2
         player_dy = sin(player_angle) * 2
+    # if world[int(player_x//64)][int(player_y//64)] != 1:
+        # pass
     pygame.draw.line(screen, "orange", (player_x, player_y), (player_x + player_dx*8, player_y + player_dy*8), width=2)
     pygame.display.flip()
     clock.tick(60)
 
 pygame.quit()
+
+def main():
+    pass
+
+if '__name__' == '__main__':
+    main()
